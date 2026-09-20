@@ -49,13 +49,15 @@ The key is loaded automatically from `.env` — no need to `export` it manually.
 python3 kita2ics.py "path/to/schedule.pdf"
 ```
 
-This extracts events and walks you through reviewing them, then writes the result to `output/events.ics` by default.
+This extracts events and walks you through reviewing them, then writes the result to `output/<input filename>.ics` by default (e.g. `schedule.pdf` → `output/schedule.ics`).
 
 **Multiple files at once:**
 
 ```bash
 python3 kita2ics.py flyer1.pdf flyer2.jpg notes.txt
 ```
+
+With multiple input files, the default output name is based on the first file (e.g. `output/flyer1.ics`).
 
 **Custom output path:**
 

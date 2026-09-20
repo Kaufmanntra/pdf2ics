@@ -217,7 +217,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("files", nargs="+", type=Path, help="PDF, image, or .txt file(s) to extract events from")
     parser.add_argument(
-        "-o", "--output", type=Path, default=Path("output/events.ics"), help="Output .ics path"
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        help="Output .ics path (default: output/<input filename>.ics)",
     )
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Anthropic model id to use for extraction")
     args = parser.parse_args()
@@ -225,6 +229,9 @@ def main() -> None:
     for f in args.files:
         if not f.exists():
             sys.exit(f"File not found: {f}")
+
+    if args.output is None:
+        args.output = Path("output") / (args.files[0].stem + ".ics")
 
     print(f"Extracting events from {len(args.files)} file(s) using {args.model}...")
     events = extract_events(args.files, args.model)
