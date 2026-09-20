@@ -96,3 +96,4 @@ Most calendar apps accept `.ics` files directly:
 
 - Requires an [Anthropic API key](https://console.anthropic.com) with available credits.
 - `.env` is git-ignored — never commit your API key.
+- Extraction is not perfectly deterministic — running the same file twice can occasionally produce slightly different results (a missed event, a wording difference). Always check the reviewed event list against the source document before accepting, especially for dense or multi-page schedules.
